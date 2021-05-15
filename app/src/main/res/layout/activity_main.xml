@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#211D44"
+    tools:context=".MainActivity">
+    <ImageView
+        android:id="@+id/ivSplash"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icget"
+        android:layout_marginBottom="400dp"
+        android:layout_marginLeft="50dp"/>
+
+    <TextView
+        android:id="@+id/tvSplash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="350dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:text="Health Tip Awareness"
+        android:textStyle="bold|italic"
+        android:textColor="#FFFF"
+        android:textSize="30sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="450dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:textSize="24sp"
+        android:textColor="#8E8686"
+        android:textStyle="italic"
+        android:text="You are responsible for your life as well as others' so please wear a mask whenever you've left your home."
+        android:id="@+id/tvSubSplash"
+        />
+
+    <Button
+        android:id="@+id/btnget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="625dp"
+        android:text="Get Started"
+        android:textSize="24sp"
+        android:textAllCaps="false"
+        android:textColor="#FFF"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/bgbtngreen"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"/>
+
+
+</RelativeLayout>
