@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "196727463407",
+    "project_id": "cure-together",
+    "storage_bucket": "cure-together.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:196727463407:android:8485fd1769958c884faa1a",
+        "android_client_info": {
+          "package_name": "com.example.curetogether"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "196727463407-795m333c31hjcbm65rvl2l8ma0bpkprf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZ9pOS5XyyT4B1LsESHtLKh5YO7ERAl-g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "196727463407-795m333c31hjcbm65rvl2l8ma0bpkprf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:196727463407:android:385f169c966de6184faa1a",
+        "android_client_info": {
+          "package_name": "com.example.stopwatch"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "196727463407-795m333c31hjcbm65rvl2l8ma0bpkprf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZ9pOS5XyyT4B1LsESHtLKh5YO7ERAl-g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "196727463407-795m333c31hjcbm65rvl2l8ma0bpkprf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
