@@ -8,14 +8,24 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 
 public class LoginActivity extends AppCompatActivity {
+Button LoginButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         changeStatusBarColor();
         setContentView(R.layout.activity_login);
+
+        LoginButton.findViewById(R.id.LoginButton);
+        LoginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onLoginClick();
+            }
+        });
     }
 
     public void changeStatusBarColor(){
@@ -27,8 +37,9 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    public void onLoginClick(View view){
-        startActivity(new Intent(this,RegisterActivity.class));
-        overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
+    public void onLoginClick(){
+        startActivity(new Intent(this,FormActivity.class));
+        finish();
+        //overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
     }
 }

@@ -74,19 +74,18 @@
                 android:textColor="@color/primaryTextColor"
                 android:textSize="@dimen/newsMoreTextSize"/>
             <Button
+                android:id="@+id/LoginButton"
                 style="@style/loginButton"
-                android:id="@+id/cirLoginButton"
                 android:layout_width="match_parent"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
                 android:layout_marginTop="@dimen/loginViewsMargin"
                 android:layout_gravity="center_horizontal"
                 android:text="Login"
-                android:textSize="16sp"
-                />
+                android:textSize="16sp"/>
             <TextView
                 style="@style/parent"
-                android:onClick="onLoginClick"
+
                 android:layout_marginTop="@dimen/loginViewsMargin"
                 android:text="New User? Register Now"
                 android:textAlignment="center"
