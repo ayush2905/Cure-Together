@@ -19,7 +19,7 @@ Button LoginButton;
         changeStatusBarColor();
         setContentView(R.layout.activity_login);
 
-        LoginButton.findViewById(R.id.LoginButton);
+        LoginButton = findViewById(R.id.LoginButton);
         LoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
