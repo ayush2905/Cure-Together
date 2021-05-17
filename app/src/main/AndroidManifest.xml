@@ -18,10 +18,11 @@
         android:theme="@style/Theme.Stopwatch">
         <activity android:name=".QueryActivity"></activity>
 
-        <activity android:name=".FormActivity"
+        <activity
+            android:name=".FormActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity

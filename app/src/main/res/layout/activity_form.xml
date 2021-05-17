@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FormActivity"
     android:layout_gravity="center"
     android:background="@color/register_bk_color"
     android:focusableInTouchMode="true"
-    android:gravity="center">
+    android:gravity="center"
+    tools:context=".FormActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -25,19 +25,20 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <TextView
                     style="@style/viewParent.headerText.NoMode"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:text="Please \nFill in\nThe required\nDetails."
-                    android:textColor="@color/whiteTextColor"/>
+                    android:textColor="@color/whiteTextColor" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"
-                    android:src="@drawable/ic_login_hero"/>
+                    android:src="@drawable/ic_login_hero" />
 
             </RelativeLayout>
 
@@ -67,6 +68,7 @@
                             android:maxLines="1" />
 
                     </com.google.android.material.textfield.TextInputLayout>
+
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputAge"
                         style="@style/parent"
@@ -80,6 +82,7 @@
                             android:maxLines="1" />
 
                     </com.google.android.material.textfield.TextInputLayout>
+
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputGender"
                         style="@style/parent"
@@ -130,24 +133,21 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         android:id="@+id/SubmitButton"
                         style="@style/loginButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="@dimen/loginViewsMargin"
-                        android:text="Submit"
                         android:layout_marginLeft="40dp"
+                        android:layout_marginTop="@dimen/loginViewsMargin"
                         android:layout_marginRight="40dp"
-                        android:textSize="16sp"/>
+                        android:text="Submit"
+                        android:textSize="16sp" />
 
 
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
-
-
-
 
 
         </LinearLayout>
@@ -160,7 +160,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_marginTop="20dp"
-        android:background="@drawable/ic_side_bg"/>
+        android:background="@drawable/ic_side_bg" />
 
 
 </RelativeLayout>

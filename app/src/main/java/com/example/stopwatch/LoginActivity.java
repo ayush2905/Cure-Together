@@ -11,7 +11,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 public class LoginActivity extends AppCompatActivity {
-Button LoginButton;
+    Button LoginButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,17 +28,17 @@ Button LoginButton;
         });
     }
 
-    public void changeStatusBarColor(){
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
-            Window window=getWindow();
+    public void changeStatusBarColor() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(getResources().getColor(R.color.colorPrimary));
 
         }
     }
 
-    public void onLoginClick(){
-        startActivity(new Intent(this,FormActivity.class));
+    public void onLoginClick() {
+        startActivity(new Intent(this, FormActivity.class));
         finish();
         //overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
     }

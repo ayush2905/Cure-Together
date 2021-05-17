@@ -7,6 +7,10 @@ public class user {
     String userGender;
     String userDisease;
 
+    public user() {
+
+    }
+
 
     public user(String userId, String userName, String userAge, String userGender, String userDisease) {
         this.userId = userId;
@@ -15,8 +19,9 @@ public class user {
         this.userGender = userGender;
         this.userDisease = userDisease;
     }
-    public String getUserId(){
-    return userId;
+
+    public String getUserId() {
+        return userId;
     }
 
     public String getUserName() {

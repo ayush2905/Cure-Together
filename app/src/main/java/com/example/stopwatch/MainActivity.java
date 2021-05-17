@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView tvSplash,tvSubSplash;
+    TextView tvSplash, tvSubSplash;
     Button btnget;
     Animation btgone;
     Animation btgtwo;
@@ -25,13 +25,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tvSplash=findViewById(R.id.tvSplash);
-        tvSubSplash=findViewById(R.id.tvSubSplash);
-        btnget=findViewById(R.id.btnget);
-        ivSplash=findViewById(R.id.ivSplash);
-        atg= AnimationUtils.loadAnimation(this,R.anim.atg);
-        btgone= AnimationUtils.loadAnimation(this,R.anim.btgone);
-        btgtwo= AnimationUtils.loadAnimation(this,R.anim.btgtwo);
+        tvSplash = findViewById(R.id.tvSplash);
+        tvSubSplash = findViewById(R.id.tvSubSplash);
+        btnget = findViewById(R.id.btnget);
+        ivSplash = findViewById(R.id.ivSplash);
+        atg = AnimationUtils.loadAnimation(this, R.anim.atg);
+        btgone = AnimationUtils.loadAnimation(this, R.anim.btgone);
+        btgtwo = AnimationUtils.loadAnimation(this, R.anim.btgtwo);
 
         ivSplash.startAnimation(atg);
         tvSplash.startAnimation(btgone);
@@ -44,10 +44,11 @@ public class MainActivity extends AppCompatActivity {
                 openActivityLogin();
             }
         });
-        }
-    public void openActivityLogin(){
-        Intent intent=new Intent(this,LoginActivity.class);
+    }
+
+    public void openActivityLogin() {
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();
-}
+    }
 }

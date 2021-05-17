@@ -24,20 +24,22 @@ public class FormActivity extends AppCompatActivity {
     EditText editTextGender;
     Spinner spinnerDisease;
 
-   DatabaseReference databaseUser;
+    DatabaseReference databaseUser;
+    user User;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
-        databaseUser= FirebaseDatabase.getInstance().getReference("user");
+        databaseUser = FirebaseDatabase.getInstance().getReference().child("user");
 
-             changeStatusBarColor();
-        SubmitButton=(Button)findViewById(R.id.SubmitButton);
-        editTextName=(EditText)findViewById(R.id.editTextName);
-        editTextAge=(EditText)findViewById(R.id.editTextAge);
-        editTextGender=(EditText)findViewById(R.id.editTextGender);
-        spinnerDisease=(Spinner)findViewById(R.id.spinnerDisease);
+        changeStatusBarColor();
+        SubmitButton = (Button) findViewById(R.id.SubmitButton);
+        editTextName = (EditText) findViewById(R.id.editTextName);
+        editTextAge = (EditText) findViewById(R.id.editTextAge);
+        editTextGender = (EditText) findViewById(R.id.editTextGender);
+        spinnerDisease = (Spinner) findViewById(R.id.spinnerDisease);
+        User = new user();
         SubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,37 +49,38 @@ public class FormActivity extends AppCompatActivity {
         });
 
     }
+
     //DatabaseReference usersRef= databaseUser.child("users");
-    private void addInfo(){
-      String name=editTextName.getText().toString().trim();
-      String age=editTextAge.getText().toString().trim();
-        String gender=editTextGender.getText().toString().trim();
-        String disease=spinnerDisease.getSelectedItem().toString();
-                if(!TextUtils.isEmpty(name)){
-                    String id=databaseUser.push().getKey();
-                    user User=new user(id,name,age,gender,disease);
-                    assert id != null;
-                    databaseUser.child(id).setValue(User);
-
-                    Toast.makeText(this,"user added",Toast.LENGTH_LONG).show();
+    public void addInfo() {
+        String name = editTextName.getText().toString().trim();
+        String age = editTextAge.getText().toString().trim();
+        String gender = editTextGender.getText().toString().trim();
+        String disease = spinnerDisease.getSelectedItem().toString();
 
 
-                }else{
-                    Toast.makeText(this,"please enter name",Toast.LENGTH_LONG).show();
-                }
+        String id = databaseUser.push().getKey();
+        user User = new user(id, name, age, gender, disease);
+
+
+        databaseUser.push().setValue(User);
+
+        Toast.makeText(this, "user added", Toast.LENGTH_LONG).show();
+
 
     }
-    public void changeStatusBarColor(){
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
-            Window window=getWindow();
+
+    public void changeStatusBarColor() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(getResources().getColor(R.color.register_bk_color));
 
         }
     }
-    public void onSubmitClick(){
 
-        startActivity(new Intent(this,QueryActivity.class ));
+    public void onSubmitClick() {
+
+        startActivity(new Intent(this, QueryActivity.class));
 
     }
 }
