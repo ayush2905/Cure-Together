@@ -106,6 +106,13 @@
                             android:inputType="text"
                             android:maxLines="1" />
 
+                        <Spinner
+                            android:id="@+id/spinnerDisease"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:entries="@array/diseases" />
+
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -125,7 +132,7 @@
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/cirSubmitButton"
+                        android:id="@+id/SubmitButton"
                         style="@style/loginButton"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/loginViewsMargin"
