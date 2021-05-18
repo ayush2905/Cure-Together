@@ -41,13 +41,13 @@ public class MainActivity extends AppCompatActivity {
         btnget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openActivityLogin();
+                openActivityRegister();
             }
         });
     }
 
-    public void openActivityLogin() {
-        Intent intent = new Intent(this, LoginActivity.class);
+    public void openActivityRegister() {
+        Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
         finish();
     }
