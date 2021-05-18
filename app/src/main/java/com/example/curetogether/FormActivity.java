@@ -44,7 +44,6 @@ public class FormActivity extends AppCompatActivity {
         editTextAge = (EditText) findViewById(R.id.editTextAge);
         editTextGender = (EditText) findViewById(R.id.editTextGender);
         spinnerDisease = (Spinner) findViewById(R.id.spinnerDisease);
-        user = new User();
         SubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,30 +56,16 @@ public class FormActivity extends AppCompatActivity {
 
     //DatabaseReference usersRef= databaseUser.child("users");
     public void addInfo() {
-//        String name = editTextName.getText().toString().trim();
-//        String age = editTextAge.getText().toString().trim();
-//        String gender = editTextGender.getText().toString().trim();
-//        String disease = spinnerDisease.getSelectedItem().toString();
+        String name = editTextName.getText().toString().trim();
+        String age = editTextAge.getText().toString().trim();
+        String gender = editTextGender.getText().toString().trim();
+        String disease = spinnerDisease.getSelectedItem().toString();
+        user = new User(name, age, gender, disease);
 
-
-//        String id = databaseUser.push().getKey();
-//        user User = new user(name, age, gender, disease);
-        if (databaseUser == null) {
-            Toast.makeText(FormActivity.this, "null", Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        if (databaseUser.getParent() == null) {
-            Toast.makeText(FormActivity.this, "null par", Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        Toast.makeText(FormActivity.this, databaseUser.getParent().toString(), Toast.LENGTH_LONG).show();
-
-        databaseUser.push().setValue("Hello").addOnCompleteListener(new OnCompleteListener<Void>() {
+        databaseUser.push().setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull @NotNull Task<Void> task) {
-                Toast.makeText(FormActivity.this, "Hi", Toast.LENGTH_LONG).show();
+                Toast.makeText(FormActivity.this, "Added", Toast.LENGTH_LONG).show();
             }
         });
 
