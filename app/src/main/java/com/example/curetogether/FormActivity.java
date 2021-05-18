@@ -1,11 +1,11 @@
-package com.example.stopwatch;
+package com.example.curetogether;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -14,8 +14,13 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.curetogether.model.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import org.jetbrains.annotations.NotNull;
 
 public class FormActivity extends AppCompatActivity {
     Button SubmitButton;
@@ -25,7 +30,7 @@ public class FormActivity extends AppCompatActivity {
     Spinner spinnerDisease;
 
     DatabaseReference databaseUser;
-    user User;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +44,7 @@ public class FormActivity extends AppCompatActivity {
         editTextAge = (EditText) findViewById(R.id.editTextAge);
         editTextGender = (EditText) findViewById(R.id.editTextGender);
         spinnerDisease = (Spinner) findViewById(R.id.spinnerDisease);
-        User = new user();
+        user = new User();
         SubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,19 +57,32 @@ public class FormActivity extends AppCompatActivity {
 
     //DatabaseReference usersRef= databaseUser.child("users");
     public void addInfo() {
-        String name = editTextName.getText().toString().trim();
-        String age = editTextAge.getText().toString().trim();
-        String gender = editTextGender.getText().toString().trim();
-        String disease = spinnerDisease.getSelectedItem().toString();
+//        String name = editTextName.getText().toString().trim();
+//        String age = editTextAge.getText().toString().trim();
+//        String gender = editTextGender.getText().toString().trim();
+//        String disease = spinnerDisease.getSelectedItem().toString();
 
 
-        String id = databaseUser.push().getKey();
-        user User = new user(id, name, age, gender, disease);
+//        String id = databaseUser.push().getKey();
+//        user User = new user(name, age, gender, disease);
+        if (databaseUser == null) {
+            Toast.makeText(FormActivity.this, "null", Toast.LENGTH_LONG).show();
+            return;
+        }
 
+        if (databaseUser.getParent() == null) {
+            Toast.makeText(FormActivity.this, "null par", Toast.LENGTH_LONG).show();
+            return;
+        }
 
-        databaseUser.push().setValue(User);
+        Toast.makeText(FormActivity.this, databaseUser.getParent().toString(), Toast.LENGTH_LONG).show();
 
-        Toast.makeText(this, "user added", Toast.LENGTH_LONG).show();
+        databaseUser.push().setValue("Hello").addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull @NotNull Task<Void> task) {
+                Toast.makeText(FormActivity.this, "Hi", Toast.LENGTH_LONG).show();
+            }
+        });
 
 
     }

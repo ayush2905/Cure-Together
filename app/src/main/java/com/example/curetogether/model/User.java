@@ -1,19 +1,19 @@
-package com.example.stopwatch;
+package com.example.curetogether.model;
 
-public class user {
+public class User {
     String userId;
     String userName;
     String userAge;
     String userGender;
     String userDisease;
 
-    public user() {
+    public User() {
 
     }
 
 
-    public user(String userId, String userName, String userAge, String userGender, String userDisease) {
-        this.userId = userId;
+    public User(/*String userId,*/ String userName, String userAge, String userGender, String userDisease) {
+//        this.userId = userId;
         this.userName = userName;
         this.userAge = userAge;
         this.userGender = userGender;
