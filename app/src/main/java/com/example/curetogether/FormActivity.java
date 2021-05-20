@@ -23,67 +23,60 @@ import com.google.firebase.database.FirebaseDatabase;
 import org.jetbrains.annotations.NotNull;
 
 public class FormActivity extends AppCompatActivity {
-    Button SubmitButton;
-    EditText editTextName;
-    EditText editTextAge;
-    EditText editTextGender;
-    Spinner spinnerDisease;
-
-    DatabaseReference databaseUser;
-    User user;
+    private EditText editTextName;
+    private EditText editTextAge;
+    private EditText editTextGender;
+    private Spinner spinnerDisease;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_form); 
-        databaseUser = FirebaseDatabase.getInstance().getReference().child("user");
-
+        setContentView(R.layout.activity_form);
         changeStatusBarColor();
-        SubmitButton = (Button) findViewById(R.id.SubmitButton);
+
+        Button submitButton = (Button) findViewById(R.id.SubmitButton);
         editTextName = (EditText) findViewById(R.id.editTextName);
         editTextAge = (EditText) findViewById(R.id.editTextAge);
         editTextGender = (EditText) findViewById(R.id.editTextGender);
         spinnerDisease = (Spinner) findViewById(R.id.spinnerDisease);
-        SubmitButton.setOnClickListener(new View.OnClickListener() {
+        submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 addInfo();
-                //onSubmitClick();
             }
         });
 
     }
 
-    //DatabaseReference usersRef= databaseUser.child("users");
-    public void addInfo() {
+    private void addInfo() {
+        if (editTextName.getText() == null || editTextAge.getText() == null || editTextGender.getText() == null) {
+            showEmptyWarning();
+        }
+        if (editTextName.getText().toString().trim().equals("") || editTextAge.getText().toString().trim().equals("") || editTextGender.getText().toString().trim().equals("")) {
+            showEmptyWarning();
+        }
         String name = editTextName.getText().toString().trim();
         String age = editTextAge.getText().toString().trim();
         String gender = editTextGender.getText().toString().trim();
         String disease = spinnerDisease.getSelectedItem().toString();
-        user = new User(name, age, gender, disease);
-
-        databaseUser.push().setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull @NotNull Task<Void> task) {
-                Toast.makeText(FormActivity.this, "Added", Toast.LENGTH_LONG).show();
-            }
-        });
-
-
+        Intent intent = new Intent(this, RegisterActivity.class);
+        intent.putExtra("NAME", name);
+        intent.putExtra("AGE", age);
+        intent.putExtra("GENDER", gender);
+        intent.putExtra("DISEASE", disease);
+        intent.putExtra("RECOVERED", false);
+        startActivity(intent);
     }
 
-    public void changeStatusBarColor() {
+    private void showEmptyWarning() {
+        Toast.makeText(this, "Incomplete details", Toast.LENGTH_LONG).show();
+    }
+
+    private void changeStatusBarColor() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(getResources().getColor(R.color.register_bk_color));
-
         }
-    }
-
-    public void onSubmitClick() {
-
-        startActivity(new Intent(this, QueryActivity.class));
-
     }
 }

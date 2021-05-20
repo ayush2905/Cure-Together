@@ -6,22 +6,36 @@ public class User {
     String userAge;
     String userGender;
     String userDisease;
+    boolean userRecovered;
 
     public User() {
 
     }
 
 
-    public User(/*String userId,*/ String userName, String userAge, String userGender, String userDisease) {
-//        this.userId = userId;
+    public User(String userName, String userAge, String userGender, String userDisease, boolean userRecovered) {
         this.userName = userName;
         this.userAge = userAge;
         this.userGender = userGender;
         this.userDisease = userDisease;
+        this.userRecovered = userRecovered;
+    }
+
+    public User(String userId, String userName, String userAge, String userGender, String userDisease, boolean userRecovered) {
+        this.userId = userId;
+        this.userName = userName;
+        this.userAge = userAge;
+        this.userGender = userGender;
+        this.userDisease = userDisease;
+        this.userRecovered = userRecovered;
     }
 
     public String getUserId() {
         return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getUserName() {

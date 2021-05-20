@@ -80,12 +80,9 @@ public class QueryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getApplicationContext(), QueryActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                Intent intent = new Intent(getApplicationContext(), SplashActivity.class);
                 startActivity(intent);
                 finish();
-
-
             }
         });
     }
