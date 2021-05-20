@@ -2,4 +2,8 @@
     <string name="app_name">Cure Together</string>
     <string name="login_email_hint">Email</string>
     <string name="login_password_hint">Enter OTP</string>
+    <string name="title_activity_tabbed">TabbedActivity</string>
+    <string name="tab_text_1">Chat</string>
+    <string name="tab_text_2">Find People</string>
+    <string name="title_activity_tabbed2">TabbedActivity2</string>
 </resources>

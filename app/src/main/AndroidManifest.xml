@@ -16,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Stopwatch">
-        <activity android:name=".HomeActivity"></activity>
+        <activity android:name=".home.HomeActivity"></activity>
         <activity android:name=".QueryActivity" />
         <activity
             android:name=".FormActivity"

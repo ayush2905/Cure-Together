@@ -3,7 +3,9 @@ package com.example.curetogether;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.curetogether.home.HomeActivity;
 import com.example.curetogether.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,7 +27,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import org.jetbrains.annotations.NotNull;
@@ -53,8 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (mVerificationId != null) {
                     verifyPhoneNumberWithCode();
-                }
-                else {
+                } else {
                     startPhoneNumberVerification();
                     Toast.makeText(RegisterActivity.this, "Hold on tight!\nSending OTP", Toast.LENGTH_LONG).show();
                 }
@@ -119,7 +120,6 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void storeDataInDatabase() {
-        //Extracting Data
         Intent intent = getIntent();
         String name = intent.getStringExtra("NAME");
         String age = intent.getStringExtra("AGE");
@@ -127,38 +127,36 @@ public class RegisterActivity extends AppCompatActivity {
         String disease = intent.getStringExtra("DISEASE");
         String recovered = intent.getStringExtra("RECOVERED");
         User user;
-        if (recovered != null) {
-            FirebaseDatabase.getInstance()
-                    .getReference()
-                    .child("diseases")
-                    .child(recovered)
-                    .setValue(true);
-            user = new User(name, age, gender, recovered);
-            store(user, disease == null, "recovered");
-        }
+        user = new User(name, age, gender, disease, recovered);
+        user.setUserId(FirebaseAuth.getInstance().getUid());
+        store(user);
+    }
+
+    private void store(User user) {
+        SharedPreferences sharedPreferences = getSharedPreferences("MY_INFO", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("DISEASE", user.getUserDisease());
+        editor.apply();
         FirebaseDatabase.getInstance()
                 .getReference()
                 .child("diseases")
-                .child(disease)
-                .setValue(true);
-        user = new User(name, age, gender, disease);
-        store(user, true, "suffering");
-    }
-
-    private void store(User user, boolean next, String dataLoc) {
+                .child(user.getUserDisease())
+                .setValue(user);
+        FirebaseDatabase.getInstance()
+                .getReference()
+                .child("diseases")
+                .child(user.getUserRecovered())
+                .setValue(user);
         FirebaseDatabase.getInstance()
                 .getReference()
                 .child("user")
-                .child(dataLoc)
                 .child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid()))
                 .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull @NotNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    if (next) {
-                        startActivity(new Intent(RegisterActivity.this, QueryActivity.class));
-                        finish();
-                    }
+                    startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
+                    finish();
                 } else {
                     Toast.makeText(RegisterActivity.this, "Oops! Something went wrong", Toast.LENGTH_LONG).show();
                 }

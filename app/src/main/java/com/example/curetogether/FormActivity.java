@@ -9,18 +9,28 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 import com.example.curetogether.model.User;
+import com.example.curetogether.utility.CustomDialog;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class FormActivity extends AppCompatActivity {
     private EditText editTextName;
@@ -28,6 +38,8 @@ public class FormActivity extends AppCompatActivity {
     private EditText editTextGender;
     private EditText editTextDisease, editTextRecovered;
     private Spinner spinnerDisease;
+    private CustomDialog dialog;
+    private List<String> diseases = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +47,13 @@ public class FormActivity extends AppCompatActivity {
         setContentView(R.layout.activity_form);
         changeStatusBarColor();
 
-        Button submitButton = (Button) findViewById(R.id.SubmitButton);
-        editTextName = (EditText) findViewById(R.id.editTextName);
-        editTextAge = (EditText) findViewById(R.id.editTextAge);
-        editTextGender = (EditText) findViewById(R.id.editTextGender);
-        spinnerDisease = (Spinner) findViewById(R.id.spinnerDisease);
+        dialog = new CustomDialog(this);
+        getDiseaseList();
+        Button submitButton = findViewById(R.id.SubmitButton);
+        editTextName = findViewById(R.id.editTextName);
+        editTextAge = findViewById(R.id.editTextAge);
+        editTextGender = findViewById(R.id.editTextGender);
+        spinnerDisease = findViewById(R.id.spinnerDisease);
         editTextDisease = findViewById(R.id.editTextDisease);
         editTextRecovered = findViewById(R.id.editTextRecovered);
         submitButton.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +63,32 @@ public class FormActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void getDiseaseList() {
+        dialog.start();
+        FirebaseDatabase.getInstance().getReference()
+                .child("diseases")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                        dialog.stop();
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                            diseases.add(dataSnapshot.getKey());
+                        }
+                        diseases.add(" ");
+                        Collections.sort(diseases);
+                        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(FormActivity.this, android.R.layout.simple_spinner_item, diseases);
+                        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerDisease.setAdapter(spinnerAdapter);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
+                        dialog.stop();
+                        Toast.makeText(FormActivity.this, "Problem fetching disease list", Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 
     private void addInfo() {
@@ -80,6 +120,7 @@ public class FormActivity extends AppCompatActivity {
         intent.putExtra("DISEASE", disease.toUpperCase());
         intent.putExtra("RECOVERED", recovered.toUpperCase());
         startActivity(intent);
+        finish();
     }
 
     private void showEmptyWarning() {
