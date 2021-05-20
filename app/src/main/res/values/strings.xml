@@ -6,4 +6,6 @@
     <string name="tab_text_1">Chat</string>
     <string name="tab_text_2">Find People</string>
     <string name="title_activity_tabbed2">TabbedActivity2</string>
+    <string name="content_des_send" >Send</string>
+    <string name="type_your_msg">Type your message</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.example.curetogether.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.curetogether.ChatActivity;
 import com.example.curetogether.R;
 import com.example.curetogether.home.HomeActivity;
 import com.example.curetogether.model.People;
@@ -61,15 +63,14 @@ public class FindPeopleAdapter extends RecyclerView.Adapter<FindPeopleAdapter.Cu
     }
 
     private void startChat(final int adapterPosition) {
-//        final Intent intent = new Intent(context, ChatActivity.class);
-//        intent.putExtra(RECEIVER_NAME, contacts.get(adapterPosition).getName());
-//        intent.putExtra(RECEIVER_NUMBER, contacts.get(adapterPosition).getNumber());
-//        intent.putExtra(RECEIVER_UID, contacts.get(adapterPosition).getUid());
-//        if (dpUri.containsKey(contacts.get(adapterPosition).getNumber())) {
-//            intent.putExtra(RECEIVER_DP_URI, Objects.requireNonNull(dpUri.get(contacts.get(adapterPosition).getNumber())).toString());
-//        } else {
-//            intent.putExtra(RECEIVER_DP_URI, "");
-//        }
-//        context.startActivity(intent);
+        final Intent intent = new Intent(context, ChatActivity.class);
+        intent.putExtra("name", peopleList.get(adapterPosition).getName());
+        intent.putExtra("id", peopleList.get(adapterPosition).getId());
+        /*if (dpUri.containsKey(contacts.get(adapterPosition).getNumber())) {
+            intent.putExtra(RECEIVER_DP_URI, Objects.requireNonNull(dpUri.get(contacts.get(adapterPosition).getNumber())).toString());
+        } else {
+            intent.putExtra(RECEIVER_DP_URI, "");
+        }*/
+        context.startActivity(intent);
     }
 }

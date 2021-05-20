@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,11 +24,13 @@ import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class fragment1 extends Fragment {
 
@@ -69,21 +72,59 @@ public class fragment1 extends Fragment {
     private void getPeopleList() {
         database.getReference()
                 .child("user")
-                .orderByChild("userRecovered")
-                .equalTo(HomeActivity.sufferingFrom)
+                .child(FirebaseAuth.getInstance().getUid())
+                .child("chat")
                 .addChildEventListener(new ChildEventListener() {
                     @Override
                     public void onChildAdded(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
                         People person = new People();
-                        Log.i("DATA", "IN METHOD");
                         if (snapshot.exists()) {
-                            User user = snapshot.getValue(User.class);
-                            person.setId(user.getUserId());
-                            Log.i("DATA", person.getId());
-                            person.setName(user.getUserName());
-                            Log.i("DATA", person.getName());
-                            addToList(person);
+                            String uid = snapshot.getKey();
+                            person.setId(uid);
+                            String chatId = Objects.requireNonNull(snapshot.getValue()).toString();
+                            person.setChatId(chatId);
+                            getNameAndLastMessage(person, chatId);
                         }
+                    }
+
+                    private void getNameAndLastMessage(People person, String chatId) {
+                        database.getReference().child("chat")
+                                .child(chatId)
+                                .addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                                        if (snapshot.exists()) {
+                                            if (snapshot.hasChildren()) {
+                                                if (person.getName() == null)
+                                                    getName(person);
+                                            }
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                                    }
+                                });
+                    }
+
+                    private void getName(People person) {
+                        database.getReference().child("user")
+                                .child(person.getId())
+                                .addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                                        if (snapshot.exists()) {
+                                            person.setName(snapshot.child("userName").getValue().toString());
+                                            addToList(person);
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                                    }
+                                });
                     }
 
                     @Override

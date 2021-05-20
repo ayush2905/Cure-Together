@@ -4,10 +4,11 @@ public class People {
     private String id;
     private String name;
     private String lastMessage;
-    private  Long time;
+    private Long time;
+    private String chatId;
 
     public People() {
-        
+
     }
 
     public People(String id, String name) {
@@ -45,5 +46,13 @@ public class People {
 
     public void setTime(Long time) {
         this.time = time;
+    }
+
+    public String getChatId() {
+        return chatId;
+    }
+
+    public void setChatId(String chatId) {
+        this.chatId = chatId;
     }
 }
