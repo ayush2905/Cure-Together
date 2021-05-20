@@ -6,6 +6,10 @@ public class People {
     private String lastMessage;
     private  Long time;
 
+    public People() {
+        
+    }
+
     public People(String id, String name) {
         this.id = id;
         this.name = name;

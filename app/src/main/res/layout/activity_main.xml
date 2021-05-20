@@ -11,40 +11,39 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/icget"
-        android:layout_marginBottom="400dp"
+        android:layout_marginBottom="350dp"
         android:layout_marginLeft="50dp"/>
 
     <TextView
         android:id="@+id/tvSplash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="350dp"
         android:layout_marginLeft="50dp"
+        android:layout_marginTop="270dp"
         android:layout_marginRight="50dp"
         android:text="Health Tip Awareness"
-        android:textStyle="bold|italic"
         android:textColor="#FFFF"
-        android:textSize="30sp"/>
+        android:textSize="30sp"
+        android:textStyle="bold|italic" />
 
     <TextView
+        android:id="@+id/tvSubSplash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="450dp"
         android:layout_marginLeft="50dp"
+        android:layout_marginTop="400dp"
         android:layout_marginRight="50dp"
-        android:textSize="24sp"
-        android:textColor="#8E8686"
-        android:textStyle="italic"
         android:text="You are responsible for your life as well as others' so please wear a mask whenever you've left your home."
-        android:id="@+id/tvSubSplash"
-        />
+        android:textColor="#8E8686"
+        android:textSize="24sp"
+        android:textStyle="italic" />
 
     <Button
         android:id="@+id/btnget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="625dp"
+        android:layout_marginTop="600dp"
         android:layout_marginRight="50dp"
         android:layout_marginBottom="40dp"
         android:background="@drawable/bgbtngreen"

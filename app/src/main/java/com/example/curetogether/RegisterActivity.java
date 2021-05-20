@@ -141,12 +141,12 @@ public class RegisterActivity extends AppCompatActivity {
                 .getReference()
                 .child("diseases")
                 .child(user.getUserDisease())
-                .setValue(user);
+                .setValue(true);
         FirebaseDatabase.getInstance()
                 .getReference()
                 .child("diseases")
                 .child(user.getUserRecovered())
-                .setValue(user);
+                .setValue(true);
         FirebaseDatabase.getInstance()
                 .getReference()
                 .child("user")

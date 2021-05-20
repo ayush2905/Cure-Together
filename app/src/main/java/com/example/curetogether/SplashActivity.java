@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 
+import com.example.curetogether.home.HomeActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SplashActivity extends AppCompatActivity {
@@ -25,7 +26,7 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 Intent intent;
                 if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-                    intent = new Intent(SplashActivity.this, QueryActivity.class);
+                    intent = new Intent(SplashActivity.this, HomeActivity.class);
                 } else {
                     intent = new Intent(SplashActivity.this, MainActivity.class);
                 }

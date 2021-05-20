@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.curetogether.R;
+import com.example.curetogether.home.HomeActivity;
 import com.example.curetogether.model.People;
 
 import java.util.List;
@@ -18,11 +19,6 @@ public class FindPeopleAdapter extends RecyclerView.Adapter<FindPeopleAdapter.Cu
 
     private final Context context;
     private final List<People> peopleList;
-    public static final String RECEIVER_NAME = "RECEIVER_NAME";
-    public static final String RECEIVER_NUMBER = "RECEIVER_NUMBER";
-    public static final String RECEIVER_DP_URI = "RECEIVER_DP_URI";
-    public static final String RECEIVER_UID = "RECEIVER_UID";
-    public static final String CHAT_ID = "CHAT_ID";
 
     public FindPeopleAdapter(Context context, List<People> peopleList) {
         this.context = context;
@@ -39,7 +35,7 @@ public class FindPeopleAdapter extends RecyclerView.Adapter<FindPeopleAdapter.Cu
     @Override
     public void onBindViewHolder(@NonNull CustomVH holder, int position) {
         holder.name.setText(peopleList.get(position).getName());
-        holder.disease.setText("Recovered from " + "_DISEASE_");
+        holder.disease.setText("Recovered from " + HomeActivity.sufferingFrom);
     }
 
     @Override

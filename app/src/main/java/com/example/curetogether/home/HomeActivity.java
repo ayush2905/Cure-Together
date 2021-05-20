@@ -28,6 +28,8 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tabbed);
         changeStatusBarColor();
 
+        getMyDisease();
+
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
@@ -42,8 +44,6 @@ public class HomeActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
-        getMyDisease();
     }
 
     private void changeStatusBarColor() {

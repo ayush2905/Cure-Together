@@ -22,11 +22,6 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.Custom
 
     private final Context context;
     private final List<People> peopleList;
-    public static final String RECEIVER_NAME = "RECEIVER_NAME";
-    public static final String RECEIVER_NUMBER = "RECEIVER_NUMBER";
-    public static final String RECEIVER_DP_URI = "RECEIVER_DP_URI";
-    public static final String RECEIVER_UID = "RECEIVER_UID";
-    public static final String CHAT_ID = "CHAT_ID";
 
     public ChatListAdapter(Context context, List<People> peopleList) {
         this.context = context;
