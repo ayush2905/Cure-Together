@@ -51,11 +51,13 @@ public class RegisterActivity extends AppCompatActivity {
         cirRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mVerificationId != null)
+                if (mVerificationId != null) {
                     verifyPhoneNumberWithCode();
-                else
+                }
+                else {
                     startPhoneNumberVerification();
-                Toast.makeText(RegisterActivity.this, "Hold on tight!\nSending OTP", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegisterActivity.this, "Hold on tight!\nSending OTP", Toast.LENGTH_LONG).show();
+                }
             }
 
 
@@ -75,6 +77,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onCodeSent(@NonNull @NotNull String s, @NonNull @NotNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                 super.onCodeSent(s, forceResendingToken);
+                Toast.makeText(RegisterActivity.this, "Code sent", Toast.LENGTH_LONG).show();
                 mVerificationId = s;
                 cirRegisterButton.setEnabled(true);
                 cirRegisterButton.setText("Verify Code");
@@ -122,16 +125,27 @@ public class RegisterActivity extends AppCompatActivity {
         String age = intent.getStringExtra("AGE");
         String gender = intent.getStringExtra("GENDER");
         String disease = intent.getStringExtra("DISEASE");
-        boolean recovered = intent.getBooleanExtra("RECOVERED", false);
-        User user = new User(name, age, gender, disease, recovered);
-        String dataLoc;
-        if (recovered) {
-            dataLoc = "recovered";
-        } else {
-            dataLoc = "suffering";
+        String recovered = intent.getStringExtra("RECOVERED");
+        User user;
+        if (recovered != null) {
+            FirebaseDatabase.getInstance()
+                    .getReference()
+                    .child("diseases")
+                    .child(recovered)
+                    .setValue(true);
+            user = new User(name, age, gender, recovered);
+            store(user, disease == null, "recovered");
         }
+        FirebaseDatabase.getInstance()
+                .getReference()
+                .child("diseases")
+                .child(disease)
+                .setValue(true);
+        user = new User(name, age, gender, disease);
+        store(user, true, "suffering");
+    }
 
-        //Storing Data
+    private void store(User user, boolean next, String dataLoc) {
         FirebaseDatabase.getInstance()
                 .getReference()
                 .child("user")
@@ -141,9 +155,10 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull @NotNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(RegisterActivity.this, "HIII", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(RegisterActivity.this, QueryActivity.class));
-                    finish();
+                    if (next) {
+                        startActivity(new Intent(RegisterActivity.this, QueryActivity.class));
+                        finish();
+                    }
                 } else {
                     Toast.makeText(RegisterActivity.this, "Oops! Something went wrong", Toast.LENGTH_LONG).show();
                 }

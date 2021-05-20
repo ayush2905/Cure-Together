@@ -26,6 +26,7 @@ public class FormActivity extends AppCompatActivity {
     private EditText editTextName;
     private EditText editTextAge;
     private EditText editTextGender;
+    private EditText editTextDisease, editTextRecovered;
     private Spinner spinnerDisease;
 
     @Override
@@ -39,6 +40,8 @@ public class FormActivity extends AppCompatActivity {
         editTextAge = (EditText) findViewById(R.id.editTextAge);
         editTextGender = (EditText) findViewById(R.id.editTextGender);
         spinnerDisease = (Spinner) findViewById(R.id.spinnerDisease);
+        editTextDisease = findViewById(R.id.editTextDisease);
+        editTextRecovered = findViewById(R.id.editTextRecovered);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,20 +54,31 @@ public class FormActivity extends AppCompatActivity {
     private void addInfo() {
         if (editTextName.getText() == null || editTextAge.getText() == null || editTextGender.getText() == null) {
             showEmptyWarning();
+            return;
         }
         if (editTextName.getText().toString().trim().equals("") || editTextAge.getText().toString().trim().equals("") || editTextGender.getText().toString().trim().equals("")) {
             showEmptyWarning();
+            return;
+        }
+        if (editTextDisease.getText() == null && editTextRecovered.getText() == null) {
+            showEmptyWarning();
+            return;
+        }
+        if (editTextDisease.getText().toString().trim().equals("") && editTextRecovered.getText().toString().trim().equals("")) {
+            showEmptyWarning();
+            return;
         }
         String name = editTextName.getText().toString().trim();
         String age = editTextAge.getText().toString().trim();
         String gender = editTextGender.getText().toString().trim();
-        String disease = spinnerDisease.getSelectedItem().toString();
+        String disease = editTextDisease.getText().toString();
+        String recovered = editTextRecovered.getText().toString();
         Intent intent = new Intent(this, RegisterActivity.class);
         intent.putExtra("NAME", name);
         intent.putExtra("AGE", age);
-        intent.putExtra("GENDER", gender);
-        intent.putExtra("DISEASE", disease);
-        intent.putExtra("RECOVERED", false);
+        intent.putExtra("GENDER", gender.toUpperCase());
+        intent.putExtra("DISEASE", disease.toUpperCase());
+        intent.putExtra("RECOVERED", recovered.toUpperCase());
         startActivity(intent);
     }
 
