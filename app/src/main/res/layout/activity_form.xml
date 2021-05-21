@@ -12,7 +12,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true">
 
         <LinearLayout
@@ -105,7 +105,7 @@
                         <EditText
                             android:id="@+id/editTextDisease"
                             style="@style/modifiedEditText"
-                            android:hint="The Disease you are currently suffering from"
+                            android:hint="Suffering from"
                             android:inputType="text"
                             android:maxLines="1" />
 
@@ -126,9 +126,16 @@
                         <EditText
                             android:id="@+id/editTextRecovered"
                             style="@style/modifiedEditText"
-                            android:hint="The Disease that you have Recovered from"
+                            android:hint="Recovered from"
                             android:inputType="text"
                             android:maxLines="1" />
+
+                        <Spinner
+                            android:id="@+id/spinnerRecovered"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:entries="@array/diseases" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 

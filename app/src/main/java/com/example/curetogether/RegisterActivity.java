@@ -59,7 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
                     verifyPhoneNumberWithCode();
                 } else {
                     startPhoneNumberVerification();
-                    Toast.makeText(RegisterActivity.this, "Hold on tight!\nSending OTP", Toast.LENGTH_LONG).show();
+                        Toast.makeText(RegisterActivity.this, "Hold on tight!\nSending OTP", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -74,13 +74,13 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onVerificationFailed(@NonNull @NotNull FirebaseException e) {
                 cirRegisterButton.setEnabled(true);
-                Toast.makeText(RegisterActivity.this, "verification failed", Toast.LENGTH_LONG).show();
+                Toast.makeText(RegisterActivity.this, "verification failed", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onCodeSent(@NonNull @NotNull String s, @NonNull @NotNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                 super.onCodeSent(s, forceResendingToken);
-                Toast.makeText(RegisterActivity.this, "Code sent", Toast.LENGTH_LONG).show();
+                Toast.makeText(RegisterActivity.this, "Code sent", Toast.LENGTH_SHORT).show();
                 mVerificationId = s;
                 cirRegisterButton.setEnabled(true);
                 cirRegisterButton.setText("Verify Code");
@@ -107,7 +107,7 @@ public class RegisterActivity extends AppCompatActivity {
                         if (task.isSuccessful())
                             userIsLoggedIn();
                         else
-                            Toast.makeText(RegisterActivity.this, "Oops! Something went wrong", Toast.LENGTH_LONG).show();
+                            Toast.makeText(RegisterActivity.this, "Oops! Something went wrong", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -117,7 +117,7 @@ public class RegisterActivity extends AppCompatActivity {
         if (user != null) {
             storeDataInDatabase();
         } else {
-            Toast.makeText(RegisterActivity.this, "Oops! Something went wrong", Toast.LENGTH_LONG).show();
+            Toast.makeText(RegisterActivity.this, "Oops! Something went wrong", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -168,7 +168,7 @@ public class RegisterActivity extends AppCompatActivity {
                             startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
                             finish();
                         } else {
-                            Toast.makeText(RegisterActivity.this, "Oops! Something went wrong", Toast.LENGTH_LONG).show();
+                            Toast.makeText(RegisterActivity.this, "Oops! Something went wrong", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -198,7 +198,8 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void onLoginClick(View view) {
-        startActivity(new Intent(this, LoginActivity.class));
+        startActivity(new Intent(this, FormActivity.class));
+        finish();
         overridePendingTransition(R.anim.slide_in_left, android.R.anim.slide_out_right);
     }
 }

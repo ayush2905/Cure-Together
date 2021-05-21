@@ -1,56 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#211D44"
     tools:context=".MainActivity">
+
     <ImageView
         android:id="@+id/ivSplash"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="365dp"
+        android:layout_height="313dp"
+        android:layout_marginLeft="10dp"
+        android:scaleType="centerCrop"
         android:src="@drawable/icget"
-        android:layout_marginBottom="350dp"
-        android:layout_marginLeft="50dp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvSplash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="270dp"
-        android:layout_marginRight="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         android:text="Health Tip Awareness"
         android:textColor="#FFFF"
         android:textSize="30sp"
-        android:textStyle="bold|italic" />
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.37"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivSplash" />
 
     <TextView
         android:id="@+id/tvSubSplash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="400dp"
-        android:layout_marginRight="50dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center"
         android:text="You are responsible for your life as well as others' so please wear a mask whenever you've left your home."
+        android:textAlignment="center"
         android:textColor="#8E8686"
         android:textSize="24sp"
-        android:textStyle="italic" />
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSplash" />
 
     <Button
         android:id="@+id/btnget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="600dp"
-        android:layout_marginRight="50dp"
         android:layout_marginBottom="40dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginRight="50dp"
         android:background="@drawable/bgbtngreen"
         android:text="Get Started"
         android:textAllCaps="false"
         android:textColor="#FFF"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
