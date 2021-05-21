@@ -15,7 +15,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginEnd="2dp"
         android:src="@drawable/img"
-        app:civ_circle_background_color="@color/colorAccent"
+        app:civ_circle_background_color="@android:color/background_light"
         android:layout_marginLeft="4dp"
         android:layout_marginRight="2dp" />
 

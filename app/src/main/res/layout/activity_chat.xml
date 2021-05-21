@@ -21,8 +21,7 @@
             android:id="@+id/dp"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@drawable/img"
-            app:civ_circle_background_color="@color/colorAccent" />
+            android:src="@drawable/img" />
 
         <LinearLayout
             android:id="@+id/nameAndLastSeen"
@@ -97,8 +96,8 @@
                 android:inputType="text"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:textCursorDrawable="@drawable/cursor_color"
                 android:textSize="16sp"
                 android:layout_marginRight="3dp" />
@@ -111,7 +110,7 @@
                 android:background="@drawable/send_bg"
                 android:contentDescription="@string/content_des_send"
                 android:gravity="center"
-                android:padding="7dp"
+                android:padding="10dp"
                 android:src="@drawable/ic_baseline_send_24"
                 android:layout_marginLeft="3dp" />
 
