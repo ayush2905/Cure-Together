@@ -1,0 +1,14 @@
+{
+  "name": "curetogether",
+  "version": "1.0.0",
+  "description": "Firebase Admin SDK for Cure Together",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Hitesh Mitruka",
+  "license": "ISC",
+  "dependencies": {
+    "firebase-admin": "^9.8.0"
+  }
+}

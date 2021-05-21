@@ -10,9 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.curetogether.ChatActivity;
+import com.example.curetogether.activity.ChatActivity;
 import com.example.curetogether.R;
-import com.example.curetogether.home.HomeActivity;
+import com.example.curetogether.activity.home.HomeActivity;
 import com.example.curetogether.model.People;
 
 import java.util.List;

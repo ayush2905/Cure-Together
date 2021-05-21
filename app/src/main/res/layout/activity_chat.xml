@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/chat_background"
     android:orientation="vertical"
-    tools:context=".ChatActivity">
+    tools:context=".activity.ChatActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"

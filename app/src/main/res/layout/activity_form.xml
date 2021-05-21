@@ -8,7 +8,7 @@
     android:background="@color/register_bk_color"
     android:focusableInTouchMode="true"
     android:gravity="center"
-    tools:context=".FormActivity">
+    tools:context=".activity.InfoActivity">
 
     <ScrollView
         android:layout_width="match_parent"

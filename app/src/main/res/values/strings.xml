@@ -8,4 +8,5 @@
     <string name="title_activity_tabbed2">TabbedActivity2</string>
     <string name="content_des_send" >Send</string>
     <string name="type_your_msg">Type your message</string>
+    <string name="message_notification_id">Message</string>
 </resources>

@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.curetogether.ChatActivity;
+import com.example.curetogether.activity.ChatActivity;
 import com.example.curetogether.R;
 import com.example.curetogether.model.People;
 import com.google.firebase.database.ChildEventListener;

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".home.TabbedActivity2">
+    tools:context=".activity.home.HomeTabActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
