@@ -31,6 +31,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -137,6 +139,13 @@ public class RegisterActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("DISEASE", user.getUserDisease());
         editor.apply();
+        Map<String, Object> map = new HashMap<>();
+        map.put("userAge", user.getUserAge());
+        map.put("userDisease", user.getUserDisease());
+        map.put("userRecovered", user.getUserRecovered());
+        map.put("userName", user.getUserName());
+        map.put("userId", user.getUserId());
+        map.put("userGender", user.getUserGender());
         FirebaseDatabase.getInstance()
                 .getReference()
                 .child("diseases")
@@ -151,17 +160,18 @@ public class RegisterActivity extends AppCompatActivity {
                 .getReference()
                 .child("user")
                 .child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid()))
-                .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull @NotNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
-                    finish();
-                } else {
-                    Toast.makeText(RegisterActivity.this, "Oops! Something went wrong", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+                .updateChildren(map)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull @NotNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
+                            finish();
+                        } else {
+                            Toast.makeText(RegisterActivity.this, "Oops! Something went wrong", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
     }
 
     private void startPhoneNumberVerification() {
