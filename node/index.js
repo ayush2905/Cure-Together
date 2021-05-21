@@ -12,23 +12,24 @@ const db = app.database()
 const ref = db.ref("notification")
 
 ref.on("child_added", snapshot => {
-  getTokenAndSend(snapshot.val())
-  ref.child(snapshot.key).remove()
-}, error => {
+        obj = snapshot.toJSON()
+        getTokenAndSend(obj[Object.keys(obj)[0]], Object.keys(obj)[0])
+        ref.child(snapshot.key).remove()
+    }, error => {
   console,log(error, "in listening")
 })
 
-function getTokenAndSend(uid) {
+function getTokenAndSend(uid, sender) {
     console.log(uid)
     var ref = db.ref(`token/${uid}`);
     ref.once("value", function(snapshot) {
-        send(snapshot.val(), uid);
+        send(snapshot.val(), sender);
     });
 }
 
-function send(token, uid) {
+function send(token, sender) {
     console.log(token)
-    var ref = db.ref(`user/${uid}/userName`);
+    var ref = db.ref(`user/${sender}/userName`);
     ref.once("value", function(snapshot) {
         var payload = {
         data: {

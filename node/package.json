@@ -4,7 +4,8 @@
   "description": "Firebase Admin SDK for Cure Together",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "author": "Hitesh Mitruka",
   "license": "ISC",
@@ -15,5 +16,8 @@
   "keywords": [
     "firebase",
     "fcm"
-  ]
+  ],
+  "engines": {
+    "node": "14.17.0"
+  }
 }
