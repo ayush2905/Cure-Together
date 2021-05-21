@@ -18,7 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Stopwatch">
         <activity android:name=".activity.ChatActivity"></activity>
-        <activity android:name=".activity.home.HomeActivity" />
+        <activity android:name=".activity.home.HomeActivity"
+            android:launchMode="singleTop"/>
         <activity
             android:name=".activity.InfoActivity"
             android:theme="@style/AppTheme.NoActionBar">

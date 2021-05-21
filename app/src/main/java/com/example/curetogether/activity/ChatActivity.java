@@ -34,6 +34,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -236,7 +237,9 @@ public class ChatActivity extends AppCompatActivity {
             msgInfo.put("type", 0);
             msgInfo.put("time", System.currentTimeMillis());
             database.getReference().child("chat").child(chatId).push().updateChildren(msgInfo);
-            database.getReference().child("notification").push().setValue(uid);
+            Map<String, Object> map = new HashMap<>();
+            map.put(FirebaseAuth.getInstance().getUid(), uid);
+            database.getReference().child("notification").push().setValue(map);
         }
     }
 
