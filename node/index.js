@@ -20,7 +20,6 @@ ref.on("child_added", snapshot => {
 })
 
 function getTokenAndSend(uid, sender) {
-    console.log(uid)
     var ref = db.ref(`token/${uid}`);
     ref.once("value", function(snapshot) {
         send(snapshot.val(), sender);
@@ -28,13 +27,13 @@ function getTokenAndSend(uid, sender) {
 }
 
 function send(token, sender) {
-    console.log(token)
     var ref = db.ref(`user/${sender}/userName`);
     ref.once("value", function(snapshot) {
         var payload = {
         data: {
             title: 'Cure Together',
-            body: 'Message from ' + snapshot.val()
+            body: 'Message from ' + snapshot.val(),
+            uid: sender
         }
     };
 

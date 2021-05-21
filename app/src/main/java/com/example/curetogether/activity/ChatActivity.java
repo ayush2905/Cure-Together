@@ -23,6 +23,7 @@ import android.widget.Toolbar;
 import com.example.curetogether.R;
 import com.example.curetogether.adapters.ChatAdapter;
 import com.example.curetogether.model.Messages;
+import com.example.curetogether.services.PushNotification;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
