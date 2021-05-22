@@ -17,9 +17,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Stopwatch">
-        <activity android:name=".activity.ChatActivity"></activity>
-        <activity android:name=".activity.home.HomeActivity"
-            android:launchMode="singleTop"/>
+        <activity android:name=".activity.CommentActivity"></activity>
+        <activity android:name=".activity.AddPost" />
+        <activity android:name=".activity.PostActivity" />
+        <activity android:name=".activity.ChatActivity" />
+        <activity
+            android:name=".activity.home.HomeActivity"
+            android:launchMode="singleTop" />
         <activity
             android:name=".activity.InfoActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -54,13 +58,13 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_stat_ic_notification" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/message_notification_id" />
-
     </application>
 
 </manifest>
