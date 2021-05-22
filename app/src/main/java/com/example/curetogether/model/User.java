@@ -5,7 +5,7 @@ public class User {
     private String userName;
     private String userAge;
     private String userGender;
-    private  String userDisease;
+    private String userDisease;
     private String userRecovered;
 
     public User() {
@@ -17,8 +17,10 @@ public class User {
         this.userName = userName;
         this.userAge = userAge;
         this.userGender = userGender;
-        this.userDisease = userDisease;
-        this.userRecovered = userRecovered;
+        if (!userDisease.equals(""))
+            this.userDisease = userDisease;
+        if (!userRecovered.equals(""))
+            this.userRecovered = userRecovered;
     }
 
     public String getUserId() {
